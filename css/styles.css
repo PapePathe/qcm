@@ -11,3 +11,8 @@ ul {
 .centered {
     text-align: center; 
 }
+
+.lien-supprimer-reponse span {
+    top: 31px;
+    font-size: 21px;
+}

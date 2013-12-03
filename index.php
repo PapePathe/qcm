@@ -1,14 +1,4 @@
-
-<html>
-    <head>
-        <title>QCM</title>
-        <link rel="stylesheet" href="css/bootstrap.css" />
-        <link rel="stylesheet" href="css/styles.css" />
-        
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-    </head>
-    <body>
+<?php include_once 'partiels/header.php'; ?>
 
         <br /><br />    
 
@@ -101,34 +91,55 @@
                                 </div>
                                 
                                 <div id="reponses">
+                                    
                                     <div class="form-group" class='reponse'>
-                                        <label for="reponse_1">Réponse 1</label>
-                                        <input type="text" name='reponses[]' class="form-control" id="reponse_1" placeholder="...">   
-                                        <div class="checkbox">
-                                            <label>
-                                              <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                              cocher si la reponse est vraie!
-                                            </label>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <label for="reponse_1">Réponse 1</label>
+                                                <input type="text" name='reponses[]' class="form-control" id="reponse_1" placeholder="...">   
+                                                <div class="checkbox">
+                                                    <label>
+                                                      <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                                      cocher si la reponse est vraie!
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
+                                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="form-group"  class='reponse'>
-                                        <label for="reponse_2">Réponse 2</label>
-                                        <input type="text" name='reponses[]' class="form-control" id="reponse_2" placeholder="...">   
-                                        <div class="checkbox">
-                                            <label>
-                                              <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                              cocher si la reponse est vraie!
-                                            </label>
-                                        </div>                                   
+                                           
+                                    
+                                    <div class="form-group" class='reponse'>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <label for="reponse_1">Réponse 2</label>
+                                                <input type="text" name='reponses[]' class="form-control" id="reponse_2" placeholder="...">   
+                                                <div class="checkbox">
+                                                    <label>
+                                                      <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                                      cocher si la reponse est vraie!
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
+                                                    <span class="glyphicon glyphicon-minus-sign"></span>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                     
                                 </div>
-                                <a href='#' title='ajouter une réponse' id='btn_ajouter_reponse'>ajouter une réponse</a>
+                                <a href='#' title='ajouter une réponse' id='btn_ajouter_reponse' class="btn btn-default pull-right">ajouter une réponse</a>
                             </div>
                             <div class="panel-footer centered">
                                 <div class='btn-toolbar'>
                                     <button type="submit" class="btn btn-success" name='enregistrer'>enregistrer</button> 
-                                    <button type="submit" class="btn btn-warning" name='reinitialiser' id='btn_reinitialiser'>réinitialiser</button>
+                                    <button type="submit" class="btn btn-danger"  name='reinitialiser' id='btn_reinitialiser'>réinitialiser</button>
                                 </div>
                             </div>
                         </div>                        
@@ -196,7 +207,4 @@
 
         </div>
 
-    </body>
-    <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/init.js"></script>
-</html>
+<?php include_once 'partiels/footer.php'; ?>
