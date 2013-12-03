@@ -125,7 +125,7 @@
                                 </div>
                                 <a href='#' title='ajouter une réponse' id='btn_ajouter_reponse'>ajouter une réponse</a>
                             </div>
-                            <div class="panel-footer">
+                            <div class="panel-footer centered">
                                 <div class='btn-toolbar'>
                                     <button type="submit" class="btn btn-success" name='enregistrer'>enregistrer</button> 
                                     <button type="submit" class="btn btn-warning" name='reinitialiser' id='btn_reinitialiser'>réinitialiser</button>
