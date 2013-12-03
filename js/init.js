@@ -24,6 +24,14 @@ jQuery(document).ready(function(){
        $rep.appendTo($reponses);
     });
    
-    console.log();
+   /**
+    * Capture du click sur le bouton pour réinitialiser le formulaire 
+    * de création d'une question.
+    */
+    jQuery('#btn_reinitialiser').click(function(){
+        $(this).closest('form').find('input[type=text], textarea').val('');
+        $(this).closest('form').find('input[type=checkbox]').attr('checked', false);
+        return false; // prevent the default action
+    });
     
 });
