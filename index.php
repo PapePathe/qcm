@@ -155,37 +155,40 @@
                                     <label for="libelle_question">texte de la question</label>
                                     <input type="text" name='libelle_question' class="form-control" id="libelle_question" placeholder="...">
                                 </div>
-                                <div class="form-group">
-                                    <label for="reponse_1">Réponse 1</label>
-                                    <input type="text" name='reponses[]' class="form-control" id="reponse_1" placeholder="...">   
-                                    <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                          cocher si la reponse est vraie!
-                                        </label>
+                                
+                                <div id="reponses">
+                                    <div class="form-group" class='reponse'>
+                                        <label for="reponse_1">Réponse 1</label>
+                                        <input type="text" name='reponses[]' class="form-control" id="reponse_1" placeholder="...">   
+                                        <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                              cocher si la reponse est vraie!
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"  class='reponse'>
+                                        <label for="reponse_2">Réponse 2</label>
+                                        <input type="text" name='reponses[]' class="form-control" id="reponse_2" placeholder="...">   
+                                        <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                              cocher si la reponse est vraie!
+                                            </label>
+                                        </div>                                   
+                                    </div>
+                                    <div class="form-group"  class='reponse'>
+                                        <label for="reponse_3">Réponse 3</label>
+                                        <input type="text" name='reponses[]' class="form-control" id="reponse_3" placeholder="...">    
+                                        <div class="checkbox">
+                                            <label>
+                                              <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                              cocher si la reponse est vraie!
+                                            </label>
+                                        </div>                                  
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="reponse_2">Réponse 2</label>
-                                    <input type="text" name='reponses[]' class="form-control" id="reponse_2" placeholder="...">   
-                                    <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                          cocher si la reponse est vraie!
-                                        </label>
-                                    </div>                                   
-                                </div>
-                                <div class="form-group">
-                                    <label for="reponse_3">Réponse 3</label>
-                                    <input type="text" name='reponses[]' class="form-control" id="reponse_3" placeholder="...">    
-                                    <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                          cocher si la reponse est vraie!
-                                        </label>
-                                    </div>                                  
-                                </div>
-
+                                <a href='#' title='ajouter une réponse' id='btn_ajouter_reponse'>ajouter une réponse</a>
                             </div>
                             <div class="panel-footer">
                                 <button type="submit" class="btn btn-success btn-block" name='enregistrer'>enregistrer</button>                                
@@ -199,4 +202,6 @@
         </div>
 
     </body>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
 </html>
