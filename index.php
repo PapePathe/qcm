@@ -39,7 +39,7 @@
 
 
 
-                        $requete_question = mysql_query("insert into questions(libelle) values('$libelle_question')");
+                        $requete_question = mysql_query("insert into questions(libelle) values('".mysql_real_escape_string($libelle_question)."')");
 
                         if ($requete_question) {
                             $last_question_id = mysql_insert_id();
@@ -49,7 +49,7 @@
                             foreach ($reponses as $key => $reponse) {
                                 if (!empty($reponse)) {
                                     $correcte = (isset($_POST['reponses_vraies'][$key]) && $_POST['reponses_vraies'][$key] == 'vrai')? 1 : 0;
-                                    $requete_reponse = mysql_query("INSERT INTO reponses (libelle, id_question, correcte) VALUES ('$reponse', $last_question_id, $correcte)");
+                                    $requete_reponse = mysql_query("INSERT INTO reponses (libelle, id_question, correcte) VALUES ('".mysql_real_escape_string($reponse)."', $last_question_id, $correcte)");
                                     if ($requete_reponse) {
                                         $nombre_reponses_inserees++;
                                     } else {
@@ -60,7 +60,7 @@
 
                             echo "<div class='alert alert-success'>Une question et $nombre_reponses_inserees reponses ajoutees.</div> ";
                         } else {
-                            echo mysql_error();
+                            echo mysql_error() . "sur la requete d'ajout des questions";
                         }
                     }
                     else
