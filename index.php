@@ -9,11 +9,31 @@
                 if(isset($_POST['enregistrer']))
                 {
                     $valid = true;
-
-                    if (empty($_POST['libelle_question'])) {
+                    
+                    /**
+                     * [INVALIDE] Si le libelle de la question est vide
+                     */
+                    if (empty($_POST['libelle_question'])) { 
                         $valid = false;
                     }
-
+                    
+                    /**
+                     * [INVALIDE] Si le tableau des réponses contient moins de deux éléments
+                     */
+                    if (count($_POST['reponses']) < 2) {
+                        $valid = false;
+                    }
+                    
+                    /**
+                     * [INVALIDE] Si le tableau des réponses vraies est vide
+                     */
+                    if (empty($_POST['reponses_vraies'])) {
+                        $valid = false;
+                    }
+                    
+                    /**
+                     * [INVALIDE] Si une des réponses est vide 
+                     */
                     foreach ($_POST['reponses'] as $reponse) {
                         if (empty($reponse)) {
                             $valid = false;
@@ -87,51 +107,67 @@
 
                                 <div class="form-group">
                                     <label for="libelle_question">texte de la question</label>
-                                    <input type="text" name='libelle_question' class="form-control" id="libelle_question" placeholder="...">
+                                    <input type="text" name='libelle_question' class="form-control" id="libelle_question" placeholder="..." 
+                                           value="<?php if(isset($_POST['libelle_question'])) {echo $_POST['libelle_question'];} else  {echo "";}   ?>">
                                 </div>
                                 
                                 <div id="reponses">
                                     
-                                    <div class="form-group" class='reponse'>
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <label for="reponse_1">Réponse 1</label>
-                                                <input type="text" name='reponses[]' class="form-control" id="reponse_1" placeholder="...">   
-                                                <div class="checkbox">
-                                                    <label>
-                                                      <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                                      cocher si la reponse est vraie!
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
-                                                    <span class="glyphicon glyphicon-minus-sign"></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                           
+                                <?php if(isset($_POST['reponses'])): ?>
                                     
-                                    <div class="form-group" class='reponse'>
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <label for="reponse_1">Réponse 2</label>
-                                                <input type="text" name='reponses[]' class="form-control" id="reponse_2" placeholder="...">   
-                                                <div class="checkbox">
-                                                    <label>
-                                                      <input type="checkbox" value="vrai" name='reponses_vraies[]'>
-                                                      cocher si la reponse est vraie!
-                                                    </label>
+                                    <?php foreach($_POST['reponses'] as $key => $reponse): ?>
+                                        <div class="form-group" class='reponse'>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <label for="reponse_1">Réponse <?php echo $key ?></label>
+                                                    <input type="text" name='reponses[]' class="form-control" id="reponse_<?php echo $key ?>" 
+                                                           placeholder="..." value ="<?php echo $reponse ?>">   
+                                                    <div class="checkbox">
+                                                        <label>
+                                                          <input type="checkbox" value="vrai" name='reponses_vraies[]' 
+                                                              <?php if( isset($_POST['reponses_vraies'][$key]) && $_POST['reponses_vraies'][$key] == 'vrai') {echo 'checked';}  ?> >
+                                                          cocher si la reponse est vraie!
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
+                                                        <span class="glyphicon glyphicon-minus-sign"></span>
+                                                    </a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-1">
-                                                <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
-                                                    <span class="glyphicon glyphicon-minus-sign"></span>
-                                                </a>
+                                        </div>                                   
+                                    
+                                    <?php endforeach; ?>
+                                    
+                                <?php else: ?>
+                                    
+                                    <?php for($i=0; $i<2; $i++): ?>                                  
+                                        <div class="form-group" class='reponse'>
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <label for="reponse_1">Réponse <?php echo $i ?></label>
+                                                    <input type="text" name='reponses[]' class="form-control" id="reponse_<?php echo $i ?>" placeholder="...">   
+                                                    <div class="checkbox">
+                                                        <label>
+                                                          <input type="checkbox" value="vrai" name='reponses_vraies[]'>
+                                                          cocher si la reponse est vraie!
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <a href='#' title='supprimer cette réponse' class="lien-supprimer-reponse">
+                                                        <span class="glyphicon glyphicon-minus-sign"></span>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div>                                     
+                                    <?php endfor; ?>
+                                    
+                                <?php endif ?>
+                                    
+                                          
+                                    
                                     
                                 </div>
                                 <a href='#' title='ajouter une réponse' id='btn_ajouter_reponse' class="btn btn-default pull-right">ajouter une réponse</a>
@@ -146,59 +182,7 @@
                     </form>
                 </div>
                 <div class="col-md-8">
-
-                    <table class="table table-hover table-bordered table-condensed">
-                        <thead>
-                            <tr>
-                                <th>Questions</th>
-                                <th>Réponses</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <?php
-                            
-                            $serverList = array('localhost', '127.0.0.1');
-                            if(in_array($_SERVER['HTTP_HOST'], $serverList))
-                            {                            
-                                // connexion et selection de la base
-                                mysql_connect("localhost", "root", "");
-                                mysql_select_db("qcm");
-                            }
-                            else
-                            {                            
-                                // connexion et selection de la base
-                                mysql_connect("localhost", "lagenced_stage", "quizz@3w");
-                                mysql_select_db("lagenced_stage");
-                            }
-                            
-                            
-                            $questions = mysql_query("select * from questions");
-                            if ($questions) {
-                                while($question = mysql_fetch_assoc($questions))
-                                {
-                                    
-                                    
-                                    $tr = "<tr><td>".$question['libelle']."</td><td><ul>";
-                                    
-                                    $select_reponses = mysql_query("select * from reponses where id_question=".$question['id']);
-                                    
-                                    if ($select_reponses) {
-                                        while ($reponse = mysql_fetch_assoc($select_reponses)) {
-                                            $label = $reponse['correcte'] == 0 ? 'danger' : 'success';
-                                            $tr .= "<li><span class='label label-$label'>". $reponse['libelle'] ."</span></li>";
-                                        }
-                                    }
-                                    
-                                    $tr .= "</ul></td><td> <a href='supprimer-question.php?id=".$question['id']."'>supprimer</a></td></tr>";
-                                    
-                                    echo $tr;
-                                }    
-                            }
-                            
-                        
-                        ?>
-                    </table>
-
+                    <?php include 'partiels/questions/liste.php'; ?>
                 </div>
                 
                 
